@@ -35,7 +35,7 @@ class JsonApiPaginator extends Paginator
         'page' => 1,
         'limit' => 20,
         'maxLimit' => 100,
-        'allowedParameters' => ['page', 'page_size', 'sort'],
+        'whitelist' => ['page', 'page_size', 'sort'],
     ];
 
     /**
@@ -88,7 +88,7 @@ class JsonApiPaginator extends Paginator
             }
             unset($options['order']);
             if (in_array($options['sort'], ObjectsTable::DATERANGES_SORT_FIELDS)) {
-                $options['sortableFields'] = [$options['sort']];
+                $options['sortWhitelist'] = [$options['sort']];
             }
         }
 

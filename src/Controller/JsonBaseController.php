@@ -27,5 +27,8 @@ abstract class JsonBaseController extends AppController
             $this->components()->unload('JsonApi');
         }
         $this->viewBuilder()->setClassName('Json');
+
+        $this->RequestHandler->setConfig('viewClassMap.json', 'Json');
+        $this->RequestHandler->setConfig('inputTypeMap.json', ['json_decode', true], false);
     }
 }

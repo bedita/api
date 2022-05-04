@@ -46,6 +46,7 @@ class JsonBaseControllerTest extends TestCase
         };
 
         static::assertEquals('Json', $controller->RequestHandler->getConfig('viewClassMap.json'));
+        static::assertEquals(['json_decode', true], $controller->RequestHandler->getConfig('inputTypeMap.json'));
         static::assertFalse($controller->components()->has('JsonApi'));
         static::assertEquals('Json', $controller->viewBuilder()->getClassName());
     }

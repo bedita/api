@@ -392,9 +392,7 @@ class FilterQueryStringTest extends IntegrationTestCase
         $this->assertContentType('application/vnd.api+json');
 
         static::assertArrayHasKey('data', $result);
-        static::assertEquals($expected, Hash::extract($result['data'], '{n}.id'), '');
-        static::assertEqualsCanonicalizing($expected, Hash::extract($result['data'], '{n}.id'), '');
-        static::assertEqualsWithDelta($expected, Hash::extract($result['data'], '{n}.id'), 0, '');
+        static::assertEquals($expected, Hash::extract($result['data'], '{n}.id'), '', 0, 10, true);
     }
 
     /**
@@ -423,9 +421,7 @@ class FilterQueryStringTest extends IntegrationTestCase
         $this->assertContentType('application/vnd.api+json');
 
         static::assertArrayHasKey('data', $result);
-        static::assertEquals([(string)$this->lastObjectId()], Hash::extract($result['data'], '{n}.id'), '');
-        static::assertEqualsCanonicalizing([(string)$this->lastObjectId()], Hash::extract($result['data'], '{n}.id'), '');
-        static::assertEqualsWithDelta([(string)$this->lastObjectId()], Hash::extract($result['data'], '{n}.id'), 0, '');
+        static::assertEquals([(string)$this->lastObjectId()], Hash::extract($result['data'], '{n}.id'), '', 0, 10, true);
     }
 
     /**
@@ -488,9 +484,7 @@ class FilterQueryStringTest extends IntegrationTestCase
         $this->assertContentType('application/vnd.api+json');
 
         static::assertArrayHasKey('data', $result);
-        static::assertEquals($expected, Hash::extract($result['data'], '{n}.id'), '');
-        static::assertEqualsCanonicalizing($expected, Hash::extract($result['data'], '{n}.id'), '');
-        static::assertEqualsWithDelta($expected, Hash::extract($result['data'], '{n}.id'), 0, '');
+        static::assertEquals($expected, Hash::extract($result['data'], '{n}.id'), '', 0, 10, true);
     }
 
     /**
@@ -571,9 +565,7 @@ class FilterQueryStringTest extends IntegrationTestCase
         $this->assertContentType('application/vnd.api+json');
 
         static::assertArrayHasKey('data', $result);
-        static::assertEquals($expected, Hash::extract($result['data'], '{n}.id'), '');
-        static::assertEqualsCanonicalizing($expected, Hash::extract($result['data'], '{n}.id'), '');
-        static::assertEqualsWithDelta($expected, Hash::extract($result['data'], '{n}.id'), 0, '');
+        static::assertEquals($expected, Hash::extract($result['data'], '{n}.id'), '', 0, 10, true);
     }
 
     /**
@@ -674,9 +666,7 @@ class FilterQueryStringTest extends IntegrationTestCase
         $this->assertContentType('application/vnd.api+json');
 
         static::assertArrayHasKey('data', $result);
-        static::assertEquals($expected, Hash::extract($result['data'], '{n}.id'), '');
-        static::assertEqualsCanonicalizing($expected, Hash::extract($result['data'], '{n}.id'), '');
-        static::assertEqualsWithDelta($expected, Hash::extract($result['data'], '{n}.id'), 0, '');
+        static::assertEquals($expected, Hash::extract($result['data'], '{n}.id'), '', 0, 10, true);
     }
 
     /**

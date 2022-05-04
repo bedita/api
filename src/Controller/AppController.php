@@ -15,7 +15,7 @@ namespace BEdita\API\Controller;
 use BEdita\API\Datasource\JsonApiPaginator;
 use Cake\Controller\Controller;
 use Cake\Core\Configure;
-use Cake\Event\EventInterface;
+use Cake\Event\Event;
 use Cake\Http\Exception\BadRequestException;
 use Cake\Http\Exception\NotAcceptableException;
 use Cake\Http\Exception\NotFoundException;
@@ -68,6 +68,9 @@ class AppController extends Controller
                 'checkMediaType' => $this->request->is('jsonapi'),
             ]);
             $this->Paginator->setPaginator((new JsonApiPaginator())->setConfig($this->Paginator->getConfig()));
+
+            $this->RequestHandler->setConfig('inputTypeMap.json', [[$this->JsonApi, 'parseInput']], false);
+            $this->RequestHandler->setConfig('viewClassMap.json', 'BEdita/API.JsonApi');
         }
 
         $this->loadComponent('Auth', [
@@ -96,7 +99,7 @@ class AppController extends Controller
     /**
      * @inheritDoc
      */
-    public function beforeFilter(EventInterface $event)
+    public function beforeFilter(Event $event)
     {
         if (!$this->request->is(['json', 'jsonapi'])) {
             throw new NotAcceptableException(
@@ -174,6 +177,6 @@ class AppController extends Controller
      */
     protected function setSerialize(array $items): void
     {
-        $this->viewBuilder()->setOption('serialize', $items);
+        $this->set('_serialize', $items);
     }
 }

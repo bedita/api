@@ -11,11 +11,17 @@
  * See LICENSE.LGPL or <http://gnu.org/licenses/lgpl-3.0.html> for more details.
  */
 
-use Cake\Routing\Route\InflectedRoute;
 use Cake\Routing\RouteBuilder;
+use Cake\Routing\Router;
+use Cake\Routing\Route\InflectedRoute;
 
-return function (RouteBuilder $routes) {
-    $routes->plugin('BEdita/API', ['path' => '/','_namePrefix' => 'api:'], function (RouteBuilder $routes) {
+Router::plugin(
+    'BEdita/API',
+    [
+        'path' => '/',
+        '_namePrefix' => 'api:',
+    ],
+    function (RouteBuilder $routes) {
         $resourcesControllers = [
             'roles',
             'streams',
@@ -268,5 +274,5 @@ return function (RouteBuilder $routes) {
             ['controller' => 'Objects', 'action' => 'relationships'],
             ['_name' => 'objects:relationships']
         );
-    });
-};
+    }
+);
