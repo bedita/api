@@ -1,7 +1,7 @@
 <?php
 /**
  * BEdita, API-first content management framework
- * Copyright 2018 ChannelWeb Srl, Chialab Srl
+ * Copyright 2022 ChannelWeb Srl, Chialab Srl
  *
  * This file is part of BEdita: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -14,31 +14,15 @@
 namespace BEdita\API\Controller;
 
 /**
- * Controller for `/config` endpoint.
+ * Controller for `/config` endpoint to handle application configurations
+ * via `AppConfig` table.
  *
- * @since 4.0.0
- * @property \BEdita\Core\Model\Table\ConfigTable $Config
+ * @since 5.0.0
  */
-class ConfigController extends AppController
+class ConfigController extends ResourcesController
 {
     /**
      * @inheritDoc
      */
-    public $modelClass = 'Config';
-
-    /**
-     * Display available configurations.
-     *
-     * @return void
-     */
-    public function index(): void
-    {
-        $query = $this->Config->find()
-            ->find('mine')
-            ->where(['context IN' => ['core', 'app']]);
-        $data = $this->paginate($query);
-
-        $this->set(compact('data'));
-        $this->setSerialize(['data']);
-    }
+    public $modelClass = 'AppConfig';
 }
