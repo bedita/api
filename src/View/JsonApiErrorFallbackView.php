@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 /**
  * BEdita, API-first content management framework
- * Copyright 2017 ChannelWeb Srl, Chialab Srl
+ * Copyright 2025 ChannelWeb Srl, Chialab Srl
  *
  * This file is part of BEdita: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -12,30 +12,30 @@ declare(strict_types=1);
  *
  * See LICENSE.LGPL or <http://gnu.org/licenses/lgpl-3.0.html> for more details.
  */
-namespace BEdita\API\Controller\Admin;
+namespace BEdita\API\View;
 
 /**
- * Controller for `/admin/config` endpoint.
+ * A fallback view class that is used for JSON API errors.
  *
- * @since 4.0.0
- * @property \BEdita\Core\Model\Table\ConfigTable $Config
+ * @since 6.0.0
  */
-class ConfigController extends AdminController
+class JsonApiErrorFallbackView extends JsonApiView
 {
-    /**
-     * @inheritDoc
-     */
-    public ?string $defaultTable = 'Config';
-
     /**
      * @inheritDoc
      */
     public function initialize(): void
     {
         parent::initialize();
+        $response = $this->getResponse();
+        $this->setResponse($response->withType('application/vnd.api+json'));
+    }
 
-        if ($this->components()->has('JsonApi')) {
-            $this->JsonApi->setConfig('clientGeneratedIds', true);
-        }
+    /**
+     * @inheritDoc
+     */
+    public static function contentType(): string
+    {
+        return parent::TYPE_MATCH_ALL;
     }
 }
